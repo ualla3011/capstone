@@ -1,0 +1,30 @@
+pipeline{
+    agent {label 'worker1'}
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '15'))
+        disableConcurrentBuilds()
+        retry(2)
+        timeout(time: 15, unit: 'MINUTES')
+    }
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'main', description: '')
+    }
+    stages{
+        stage("checkout"){
+	    steps{
+		    checkout scm
+			}  
+		   }	
+	stage("Build and Push"){
+        steps{
+		    
+           
+        }
+       } 
+       stage("Deploy on App host"){
+        steps{
+                
+      }
+      }
+    }
+}
