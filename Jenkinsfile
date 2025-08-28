@@ -11,10 +11,10 @@ pipeline{
 		    sh """
                        whoami 
                        ssh -T -o StrictHostKeyChecking=no -i /var/lib/jenkins/project.pem ubuntu@3.93.59.53
-                        set -x
-            sudo cp index-aws.html /var/www/html/index.html
-            sudo systemctl restart nginx 
-           """
+                       git clone https://github.com/ualla3011/capstone.git
+                       sudo cp index-aws.html /var/www/html/index.html
+                       sudo systemctl restart nginx 
+              """
 		   }
        } 
        stage("Deploy to azure"){
