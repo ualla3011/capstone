@@ -8,10 +8,14 @@ pipeline{
 		   }	
 	stage("Deplo to AWS"){
         steps{
-		    sh '''
+		    sh """
+                       whoami 
+                       ssh -T -o StrictHostKeyChecking=no -i /var/lib/jenkins/project.pem ubuntu@3.93.59.53
+                        set -x
             sudo cp index-aws.html /var/www/html/index.html
-            sudo systemctl restart nginx '''
-           }
+            sudo systemctl restart nginx 
+           """
+		   }
        } 
        stage("Deploy to azure"){
         steps{
