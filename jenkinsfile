@@ -1,30 +1,24 @@
 pipeline{
-    agent {label 'worker1'}
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '15'))
-        disableConcurrentBuilds()
-        retry(2)
-        timeout(time: 15, unit: 'MINUTES')
-    }
-    parameters {
-        string(name: 'BRANCH', defaultValue: 'main', description: '')
-    }
+    agent any
     stages{
-        stage("checkout"){
+        stage("clone repository"){
 	    steps{
-		    checkout scm
+		    git branch: 'main',url:https://github.com/ualla3011/capstone.git
 			}  
 		   }	
-	stage("Build and Push"){
+	stage("Deplo to AWS"){
         steps{
-		    
-           
-        }
+		    sh '''
+            sudo cp index-aws.html /var/www/html/index.html
+            sudo systemctl restart nginx '''
+           }
        } 
-       stage("Deploy on App host"){
+       stage("Deploy to azure"){
         steps{
-                
-      }
+            sh '''
+            sudo cp index-aws.html /var/www/html/index.html
+            sudo systemctl restart nginx '''
+        }
       }
     }
 }
