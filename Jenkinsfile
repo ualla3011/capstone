@@ -23,7 +23,7 @@ pipeline{
             sh """
 			sshpass -p Password1234! ssh -T -o StrictHostKeyChecking=no testadmin@172.190.164.2 '
             git clone https://github.com/ualla3011/capstone.git
-			ls -ltr /home/ubuntu/capstone/index-azure.html
+			ls -ltr /home/testadmin/capstone/index-azure.html
             sudo cp index-azure.html /var/www/html/index.html
             sudo systemctl restart nginx '
 			"""
