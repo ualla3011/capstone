@@ -12,7 +12,7 @@ pipeline{
                        whoami 
                        ssh -T -o StrictHostKeyChecking=no -i /var/lib/jenkins/project.pem ubuntu@3.93.59.53
                        git clone https://github.com/ualla3011/capstone.git
-                       sudo cp index-aws.html /var/www/html/index.html
+                       sudo cp /home/ubuntu/capstone/index-aws.html /var/www/html/index.html
                        sudo systemctl restart nginx 
               """
 		   }
