@@ -21,7 +21,7 @@ pipeline{
        stage("Deploy to azure"){
         steps{
             sh """
-			sshpass -p Password1234! ssh -T -o StrictHostKeyChecking=no -i testadmin@172.190.164.2 '
+			sshpass -p Password1234! ssh -T -o StrictHostKeyChecking=no testadmin@172.190.164.2 '
             git clone https://github.com/ualla3011/capstone.git
 			ls -ltr /home/ubuntu/capstone/index-azure.html
             sudo cp index-azure.html /var/www/html/index.html
