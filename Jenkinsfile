@@ -1,12 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage("clone repository"){
-	    steps{
-		    git branch: 'main',url:'https://github.com/ualla3011/capstone.git'
-			}  
-		   }	
-	stage("Deplo to AWS"){
+     stage("Deplo to AWS"){
         steps{
 		    sh """
                        whoami 
