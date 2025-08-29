@@ -1,0 +1,33 @@
+- name: First playbook
+  hosts: [awsvm azurevm]
+  become: true
+  tasks:
+  - name: ping test
+    ping:
+  - name: update apt cache
+    apt: 
+     update_cache: yes
+  - name: install nginx
+    apt: name=nginx state=latest
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+  - name: copying AWS index.html
+    copy:
+      src: index-aws.html
+      dest: /var/www/html/index.html
+    when: "'awsvm' in group_names"
+  - name: copying Azure index.html
+    copy:
+      src: index-azure.html
+      dest: /var/www/html/index.html
+    when: "'azurevm' in group_names"
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+      enabled: yes
+
+
+
